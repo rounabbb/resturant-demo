@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saffron Kitchen & Bar — Modern Indian Dining</title>
+<meta name="description" content="Saffron Kitchen & Bar brings modern Indian cuisine to your table. Reserve your spot for an unforgettable dining experience.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23C9822A'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='serif' font-size='60' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1A1410;
+  --accent: #C9822A;
+  --accent-light: #E4A94F;
+  --accent-dark: #A66A1E;
+  --warm-white: #FBF8F4;
+  --cream: #F5EFE6;
+  --card-bg: #FFFFFF;
+  --border: #E8E0D6;
+  --body: #4A3F35;
+  --muted: #8A7E72;
+  --deep: #0F0C09;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--body);
+  background: var(--warm-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent;
+  transition: all 500ms cubic-bezier(0.4,0,0.2,1);
+}
+.nav.scrolled {
+  background: rgba(251,248,244,0.95);
+  backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 4px 30px rgba(26,20,16,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; color: var(--body);
+  transition: color 300ms; position: relative; padding: 4px 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1.5px; background: var(--accent);
+  transition: width 300ms cubic-bezier(0.4,0,0.2,1);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  padding: 10px 22px; background: var(--accent); color: #fff;
+  font-size: 0.85rem; font-weight: 600; border-radius: 8px;
+  transition: all 300ms; border: none; cursor: pointer;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,130,42,0.35); }
+.mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--primary); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 24px 80px;
+}
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.3);
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(15,12,9,0.6) 0%, rgba(15,12,9,0.2) 40%, rgba(15,12,9,0.7) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 20px; border-radius: 100px;
+  background: rgba(255,255,255,0.08); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--accent-light); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 0 auto 28px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  font-weight: 400; line-height: 1.06;
+  color: #fff; letter-spacing: -0.02em;
+  max-width: 800px; margin: 0 auto 20px;
+}
+.hero h1 em { font-style: italic; color: var(--accent-light); }
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,0.65);
+  max-width: 550px; margin: 0 auto 40px; line-height: 1.7;
+}
+.hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-hero {
+  padding: 14px 30px; border-radius: 10px;
+  font-size: 0.92rem; font-weight: 600;
+  cursor: pointer; border: 1.5px solid transparent;
+  transition: all 300ms cubic-bezier(0.4,0,0.2,1);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-fill { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-fill:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(201,130,42,0.4); }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.25); }
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+/* ── STORY ── */
+.story { padding: 100px 24px; }
+.story-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.story-img-wrap { position: relative; }
+.story-img {
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(26,20,16,0.12);
+}
+.story-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.story-accent-box {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--accent); color: #fff;
+  padding: 20px 28px; border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(201,130,42,0.3);
+}
+.story-accent-box .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 600; line-height: 1;
+}
+.story-accent-box .label { font-size: 0.8rem; font-weight: 500; opacity: 0.85; }
+.story-content .eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+}
+.story-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 400;
+  color: var(--primary); margin-bottom: 20px; line-height: 1.15;
+}
+.story-content p { font-size: 1.02rem; color: var(--body); margin-bottom: 16px; }
+.story-signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 1.15rem;
+  color: var(--primary); margin-top: 24px;
+}
+
+/* ── MENU ── */
+.menu-section { padding: 100px 24px; background: var(--cream); }
+.menu-inner { max-width: 1200px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-header .eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 400;
+  color: var(--primary); line-height: 1.15;
+}
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.menu-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  transition: all 400ms cubic-bezier(0.4,0,0.2,1);
+}
+.menu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(26,20,16,0.1);
+  border-color: rgba(201,130,42,0.3);
+}
+.menu-card-img { aspect-ratio: 4/3; overflow: hidden; }
+.menu-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.4,0,0.2,1);
+}
+.menu-card:hover .menu-card-img img { transform: scale(1.06); }
+.menu-card-body { padding: 24px; }
+.menu-card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--primary); margin-bottom: 8px;
+}
+.menu-card-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 14px; }
+.menu-price {
+  font-weight: 700; font-size: 1rem; color: var(--accent-dark);
+}
+
+/* ── SPECIALS STRIP ── */
+.specials {
+  padding: 80px 24px;
+  background: var(--deep);
+  position: relative; overflow: hidden;
+}
+.specials-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 600px 300px at 30% 50%, rgba(201,130,42,0.12) 0%, transparent 80%);
+}
+.specials-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+}
+.specials-text .eyebrow { color: var(--accent-light); margin-bottom: 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.specials-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: #fff; font-weight: 400; margin-bottom: 16px; line-height: 1.2;
+}
+.specials-text p { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 28px; }
+.specials-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.specials-list li {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  transition: all 300ms;
+}
+.specials-list li:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(201,130,42,0.3);
+}
+.specials-list .emoji { font-size: 1.6rem; flex-shrink: 0; }
+.specials-list .info { flex: 1; }
+.specials-list .name { font-weight: 600; font-size: 0.95rem; color: #fff; }
+.specials-list .desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.specials-list .price { font-weight: 700; color: var(--accent-light); font-size: 0.95rem; }
+
+/* ── GALLERY ── */
+.gallery { padding: 100px 24px; }
+.gallery-inner { max-width: 1200px; margin: 0 auto; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 240px);
+  gap: 14px;
+}
+.gallery-item {
+  border-radius: 16px; overflow: hidden;
+  position: relative;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.4,0,0.2,1);
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(15,12,9,0.35) 100%);
+  opacity: 0; transition: opacity 400ms;
+}
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+/* ── HOURS / INFO ── */
+.info-section { padding: 80px 24px; background: var(--cream); }
+.info-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.info-card {
+  text-align: center;
+  padding: 36px 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 300ms;
+}
+.info-card:hover {
+  border-color: rgba(201,130,42,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(26,20,16,0.06);
+}
+.info-icon { font-size: 2rem; margin-bottom: 16px; }
+.info-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--primary); margin-bottom: 10px;
+}
+.info-card p { font-size: 0.92rem; color: var(--muted); }
+.info-card strong { color: var(--body); }
+
+/* ── CTA ── */
+.cta-section {
+  padding: 100px 24px;
+  background: var(--primary);
+  position: relative; overflow: hidden;
+}
+.cta-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(201,130,42,0.15) 0%, transparent 70%);
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+.cta-inner .eyebrow { color: var(--accent-light); margin-bottom: 16px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.cta-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  color: #fff; font-weight: 400; margin-bottom: 16px; line-height: 1.15;
+}
+.cta-inner p { color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 36px; }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 48px 24px;
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-left { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+.footer-left strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); transition: color 300ms; }
+.footer-links a:hover { color: var(--accent-light); }
+
+/* ── DEMO BANNER ── */
+.demo-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: var(--primary); color: #fff;
+  text-align: center; padding: 12px 24px;
+  font-size: 0.85rem; font-weight: 500;
+}
+.demo-banner a { color: var(--accent-light); text-decoration: underline; }
+
+/* ── FADE UP ── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1); }
+.fade-up.in { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .story-inner { grid-template-columns: 1fr; gap: 40px; }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  .specials-inner { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 200px); }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 640px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .info-inner { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gallery-item:nth-child(1) { grid-column: span 1; }
+  .gallery-item { height: 220px; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .btn-hero { width: 100%; justify-content: center; }
+  .story-accent-box { position: relative; bottom: auto; right: auto; display: inline-block; margin-top: 16px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  🍽️ This is a demo website built by <strong>Rounab</strong> · <a href="https://wa.me/918282036966" target="_blank">Get one like this →</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Saffron<span>.</span></a>
+    <div class="nav-links">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reserve" class="nav-cta">Reserve a Table</a>
+    </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80" alt="Saffron restaurant ambiance">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 2018 · Atlanta, GA</div>
+    <div class="hero-divider"></div>
+    <h1>A taste of India, <em>reimagined</em></h1>
+    <p class="hero-sub">Bold, soulful flavors crafted with locally sourced ingredients and generations of culinary tradition. Every dish tells a story.</p>
+    <div class="hero-ctas">
+      <a href="#reserve" class="btn-hero btn-fill">Reserve a Table</a>
+      <a href="#menu" class="btn-hero btn-ghost">Explore Menu ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-img-wrap fade-up">
+      <div class="story-img">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&q=80" alt="Chef preparing food" loading="lazy">
+      </div>
+      <div class="story-accent-box">
+        <div class="num">7+</div>
+        <div class="label">Years Serving Atlanta</div>
+      </div>
+    </div>
+    <div class="story-content fade-up">
+      <p class="eyebrow">Our Story</p>
+      <h2>From family kitchen to your favorite table</h2>
+      <p>Saffron Kitchen & Bar started with a simple dream — to bring the bold, authentic flavors of Indian cuisine to Atlanta in a way that feels both familiar and refreshingly new.</p>
+      <p>Every dish begins with recipes passed down through three generations, reimagined with modern technique and the freshest local ingredients. We don't just cook food — we craft experiences.</p>
+      <p class="story-signature">— Chef Arjun & Family</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU HIGHLIGHTS -->
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Our Menu</p>
+      <h2>Signature dishes you'll crave</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Butter Chicken" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Butter Chicken</h3>
+          <p>Tandoor-roasted chicken simmered in a velvety tomato cream sauce with caramelized onions and house spices.</p>
+          <span class="menu-price">$18.95</span>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&q=80" alt="Lamb Biryani" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Lamb Biryani</h3>
+          <p>Slow-cooked lamb layered with aged basmati rice, saffron threads, and caramelized onions in a sealed pot.</p>
+          <span class="menu-price">$22.95</span>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Samosa Platter" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Samosa Platter</h3>
+          <p>Hand-folded pastries stuffed with spiced potato and green peas. Served with tamarind and mint chutneys.</p>
+          <span class="menu-price">$10.95</span>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80" alt="Paneer Tikka Masala" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Paneer Tikka Masala</h3>
+          <p>Chargrilled cottage cheese cubes in a smoky bell pepper gravy with fresh fenugreek and cream.</p>
+          <span class="menu-price">$16.95</span>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=600&q=80" alt="Tandoori Platter" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Tandoori Mixed Grill</h3>
+          <p>A showstopper platter of tikka, seekh kebab, tandoori chicken, and grilled prawns with naan.</p>
+          <span class="menu-price">$26.95</span>
+        </div>
+      </div>
+      <div class="menu-card fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80" alt="Mango Lassi" loading="lazy">
+        </div>
+        <div class="menu-card-body">
+          <h3>Mango Lassi</h3>
+          <p>Creamy yogurt blended with Alphonso mango, cardamom, and a hint of saffron. Perfectly refreshing.</p>
+          <span class="menu-price">$6.95</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section class="specials">
+  <div class="specials-glow"></div>
+  <div class="specials-inner">
+    <div class="specials-text fade-up">
+      <p class="eyebrow">Weekly Specials</p>
+      <h2>Something new every week</h2>
+      <p>Our chef curates exclusive specials using seasonal ingredients. Available for dine-in only — while they last.</p>
+    </div>
+    <ul class="specials-list fade-up">
+      <li>
+        <span class="emoji">🦐</span>
+        <div class="info">
+          <div class="name">Kerala Prawn Curry</div>
+          <div class="desc">Coconut milk, curry leaf, mustard seed</div>
+        </div>
+        <span class="price">$24.95</span>
+      </li>
+      <li>
+        <span class="emoji">🍖</span>
+        <div class="info">
+          <div class="name">Smoked Lamb Shank</div>
+          <div class="desc">48-hour marinade, slow-roasted, saffron jus</div>
+        </div>
+        <span class="price">$29.95</span>
+      </li>
+      <li>
+        <span class="emoji">🍰</span>
+        <div class="info">
+          <div class="name">Pistachio Rose Kulfi</div>
+          <div class="desc">House-made frozen cream, rose petals</div>
+        </div>
+        <span class="price">$9.95</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="section-header fade-up">
+      <p class="eyebrow">Inside Saffron</p>
+      <h2>The atmosphere you deserve</h2>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80" alt="Fine dining setup" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Plated dish" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Bar area" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Restaurant patio" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80" alt="Dessert close-up" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & INFO -->
+<section class="info-section">
+  <div class="info-inner">
+    <div class="info-card fade-up">
+      <div class="info-icon">🕐</div>
+      <h3>Hours</h3>
+      <p><strong>Mon–Thu:</strong> 11am – 10pm<br><strong>Fri–Sat:</strong> 11am – 11pm<br><strong>Sunday:</strong> 12pm – 9pm</p>
+    </div>
+    <div class="info-card fade-up">
+      <div class="info-icon">📍</div>
+      <h3>Location</h3>
+      <p><strong>1234 Peachtree St NE</strong><br>Suite 100, Atlanta, GA 30309<br>Free valet parking</p>
+    </div>
+    <div class="info-card fade-up">
+      <div class="info-icon">📞</div>
+      <h3>Contact</h3>
+      <p><strong>(555) 987-6543</strong><br>hello@saffronkitchen.com<br>DM us @saffronatl</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="reserve">
+  <div class="cta-glow"></div>
+  <div class="cta-inner fade-up">
+    <p class="eyebrow">Join Us Tonight</p>
+    <h2>Reserve your table in seconds</h2>
+    <p>Walk-ins welcome, but reservations guarantee your spot. Private dining available for parties of 8+.</p>
+    <div class="hero-ctas">
+      <a href="tel:+15559876543" class="btn-hero btn-fill">Call (555) 987-6543</a>
+      <a href="#" class="btn-hero btn-ghost">Order Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left"><strong>Saffron Kitchen & Bar</strong> · 1234 Peachtree St NE · Atlanta, GA</div>
+    <div class="footer-links">
+      <a href="#story">Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reserve">Reserve</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// Fade up
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const siblings = Array.from(entry.target.parentElement.children).filter(el => el.classList.contains('fade-up'));
+      const idx = siblings.indexOf(entry.target);
+      setTimeout(() => entry.target.classList.add('in'), Math.max(0, idx) * 120);
+      fadeObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
